@@ -11,10 +11,10 @@ pub mod openssh;
 #[cfg(test)]
 mod tests;
 
-pub use self::openssh::*;
+pub use self::openssh::decode_openssh;
 
 pub mod pkcs5;
-pub use self::pkcs5::*;
+pub use self::pkcs5::decode_pkcs5;
 
 pub mod pkcs8;
 
@@ -134,5 +134,5 @@ fn decode_rsa_pkcs1_der(secret: &[u8]) -> Result<ssh_key::private::RsaKeypair, E
 
     use pkcs1::DecodeRsaPrivateKey;
 
-    Ok(rsa::RsaPrivateKey::from_pkcs1_der(secret)?.try_into()?)
+    Ok(rsa::PrivateKey::from_pkcs1_der(secret)?.try_into()?)
 }
